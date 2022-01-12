@@ -16,6 +16,10 @@ const kepperSchema = mongoose.Schema({
 
 const keeper = new mongoose.model("keeper", kepperSchema)
 
+app.get("/", (req, res) => {
+    res.send("Beckend connected.")
+})
+
 
 app.get("/api/getAll",(req, res) =>{
     keeper.find({}, (err, keeperList) => {
