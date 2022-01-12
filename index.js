@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config()
 import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
@@ -8,7 +10,9 @@ app.use(express.urlencoded())
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb://localhost:27017/mykeeperAppDB", {useNewUrlParser: true, useUnifiedTopology: true}, () => console.log("DB Connected"))
+const dbPassword = process.env.DB_PASSWORD
+
+mongoose.connect(`mongodb+srv://backend_admin:${dbPassword}@cluster0.swjlz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true}, () => console.log("DB Connected"))
 const kepperSchema = mongoose.Schema({
     title: String,
     description: String
@@ -64,6 +68,6 @@ app.post("/api/delete",(req, res) =>{
     })
 })
 
-app.listen(process.env.PORT || 3001, () =>{
+app.listen(process.env.PORT , () =>{
     console.log("backend created at port 3001")
 })
