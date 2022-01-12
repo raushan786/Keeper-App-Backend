@@ -64,6 +64,6 @@ app.post("/api/delete",(req, res) =>{
     })
 })
 
-app.listen(3001, () =>{
+app.listen(process.env.PORT || 3001, () =>{
     console.log("backend created at port 3001")
 })
